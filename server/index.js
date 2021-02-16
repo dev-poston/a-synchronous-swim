@@ -1,6 +1,5 @@
 
 
-
 const keypressHandler = require('./js/keypressHandler');
 keypressHandler.initialize(message => console.log(`Message received: ${message}`));
 
