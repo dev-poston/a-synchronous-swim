@@ -17,7 +17,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: 'FILL_ME_IN',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
@@ -45,5 +45,24 @@
 
     ajaxFileUplaod(file);
   });
+
+  const ajaxRandomMove = () => {
+    $.ajax({
+      type: 'GET',
+      url: serverUrl,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: (res) => {
+        // reload the page
+        console.log('response', res);
+        SwimTeam.move(res);
+      }
+    });
+  };
+
+  setInterval(() => {
+    ajaxRandomMove();
+  }, 1000);
 
 })();
