@@ -15,6 +15,12 @@ module.exports.initialize = (queue) => {
 module.exports.router = (req, res, next = ()=>{}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
   res.writeHead(200, headers);
-  res.end();
+  res.end(randomSwim());
   next(); // invoke next() at the end of a request to help with testing!
 };
+
+let randomSwim = () => {
+let directions = ['up', 'down', 'left', 'right'];
+let randomNum = directions[Math.floor(Math.random() * directions.length)];
+return randomNum;
+}
