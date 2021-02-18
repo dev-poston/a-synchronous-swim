@@ -61,8 +61,10 @@
     });
   };
 
+  // ajaxRandomMove();
+
   setInterval(() => {
     ajaxRandomMove();
-  }, 1000);
+  }, 2000);
 
 })();
