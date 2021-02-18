@@ -6,7 +6,7 @@ const server = require('./mockServer');
 const messageQueue =  require('../js/messageQueue');
 const httpHandler = require('../js/httpHandler');
 
-
+httpHandler.initialize(messageQueue);
 
 describe('server responses', () => {
 
@@ -24,7 +24,7 @@ describe('server responses', () => {
   it('should respond to a GET request for a swim command', (done) => {
     let {req, res} = server.mock('/', 'GET');
 
-    messageQueue.enqueue('left');
+    messageQueue.enqueue('up');
 
     httpHandler.router(req, res);
     expect(res._responseCode).to.equal(200);
@@ -32,6 +32,7 @@ describe('server responses', () => {
     expect(res._data.toString()).to.be.oneOf(['up', 'down', 'left', 'right']);
 
     done();
+
   });
 
   xit('should respond with 404 to a GET request for a missing background image', (done) => {
