@@ -11,27 +11,13 @@
   // Note: remember to fix the URL below.
   /////////////////////////////////////////////////////////////////////
 
-  // const getBackground = () => {
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: serverUrl + '/background.jpg',
-  //     succes: (res) => {
-  //       window.location = window.location.href;
-  //     }
-  //   });
-  // };
-
-  // $('#getImage').on('click', (event) => {
-  //   getBackground();
-  // });
-//===================================================
   const ajaxFileUplaod = (file) => {
     var formData = new FormData();
     formData.append('file', file);
     $.ajax({
       type: 'POST',
       data: formData,
-      url: serverUrl, //+ '/background.jpg',
+      url: serverUrl,
       cache: false,
       contentType: false,
       processData: false,
