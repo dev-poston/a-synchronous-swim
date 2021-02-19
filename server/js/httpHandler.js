@@ -15,15 +15,25 @@ module.exports.initialize = (queue) => {
 module.exports.router = (req, res, next = ()=>{}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
   if (req.method === 'GET') {
-  res.writeHead(200, headers);
-  res.end(messageQueue.dequeue());
+    if (req.url === '/') {
+      res.writeHead(200, headers);
+      res.end(messageQueue.dequeue());
+    }
+    if (req.url === '/background.jpg') {
+      fs.readFile(exports.backgroundImageFile, function (err, data) {
+        if (err) {
+          res.writeHead(404, headers);
+          res.end();
+        } else {
+          res.writeHead(200, headers);
+          res.write(data);
+          res.end();
+        }
+      });
+    }
   }
   if (req.method === 'OPTIONS') {
     res.writeHead(200, headers);
-    res.end();
-  }
-  if (req.method === 'GET' && req.url === '/background.jpg') {
-    res.writeHead(404, headers);
     res.end();
   }
   if (req.method === 'POST') {
