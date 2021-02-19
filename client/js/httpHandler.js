@@ -21,8 +21,9 @@
       cache: false,
       contentType: false,
       processData: false,
-      success: () => {
+      success: (res) => {
         // reload the page
+        console.log(res)
         window.location = window.location.href;
       }
     });
