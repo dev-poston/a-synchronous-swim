@@ -16,13 +16,14 @@ module.exports.router = (req, res, next = ()=>{}) => {
   console.log('Serving request type ' + req.method + ' for url ' + req.url);
 
   if (req.method === 'GET') {
-    if (req.url === '/') {
+    if (req.url !== '/background.jpg') {
       res.writeHead(200, headers);
       res.end(messageQueue.dequeue());
       next();
     }
     if (req.url === '/background.jpg') {
       fs.readFile(exports.backgroundImageFile, function (err, data) {
+        //console.log('data:', data);
         if (err) {
           res.writeHead(404, headers);
           res.end();
