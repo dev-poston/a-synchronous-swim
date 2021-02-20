@@ -68,18 +68,16 @@
 
 //========================================
 
-  const ajaxImageReq = () => {
-    $.ajax({
-      type: 'GET',
-      url: serverUrl + '/background.jpg',
-      success: (res) => {
-
-
-        // window.location = window.location.href;
-        $('.pool').css('background-image', 'url(' + '/background.jpg' + ')');
-      }
-    });
-  }
-  ajaxImageReq();
+  // const ajaxImageReq = () => {
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: serverUrl + '/background.jpg',
+  //     success: (res) => {
+  //       //window.location = window.location.href;
+  //       $('.pool').css('background-image', 'url(' + '/background.jpg' + ')');
+  //     }
+  //   });
+  // }
+  // ajaxImageReq();
 
 })();
