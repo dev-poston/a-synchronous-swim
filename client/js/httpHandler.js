@@ -17,7 +17,7 @@
     $.ajax({
       type: 'POST',
       data: formData,
-      url: serverUrl,
+      url: serverUrl + '/background.jpg',
       cache: false,
       contentType: false,
       processData: false,
@@ -45,6 +45,7 @@
     }
 
     ajaxFileUplaod(file);
+
   });
 //==============================================
   const ajaxRandomMove = () => {
@@ -64,20 +65,22 @@
 
   setInterval(() => {
     ajaxRandomMove();
-  }, 2000);
+  }, 5000);
 
 //========================================
 
-  // const ajaxImageReq = () => {
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: serverUrl + '/background.jpg',
-  //     success: (res) => {
-  //       //window.location = window.location.href;
-  //       $('.pool').css('background-image', 'url(' + '/background.jpg' + ')');
-  //     }
-  //   });
-  // }
-  // ajaxImageReq();
+  const ajaxImageReq = () => {
+    $.ajax({
+      type: 'GET',
+      url: serverUrl + '/background.jpg',
+      success: (res) => {
+        console.log('get req')
+        window.location = window.location.href;
+      }
+    });
+  };
 
+  $('.submit').on('click', (event) => {
+    ajaxImageReq();
+  });
 })();

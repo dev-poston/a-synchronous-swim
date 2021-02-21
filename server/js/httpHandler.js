@@ -42,8 +42,30 @@ module.exports.router = (req, res, next = ()=>{}) => {
     res.end();
     next();
   }
-  // if (req.method === 'POST') {
-
-  // }
+  if (req.method === 'POST' && req.url === '/background.jpg') {
+    let imgBuff = Buffer.alloc(0);
+    req.on('data', (chunk) => {
+      imgBuff = Buffer.concat([imgBuff, chunk]);
+      console.log('img', imgBuff)
+    });
+    req.on('end', () => {
+      let filePart = multipart.getFile(imgBuff);
+      console.log('FILE:', filePart);
+      fs.writeFile(module.exports.backgroundImageFile, filePart.data, (err, data) => {
+        if (err) {
+          console.log('you have failed');
+          res.writeHead(404);
+          // res.end();
+          // next();
+        } else {
+          console.log('success');
+          res.writeHead(201, headers);
+          res.write(filePart.data);
+        }
+        res.end();
+        next();
+     });
+    });
+  }
   // next(); // invoke next() at the end of a request to help with testing!
 };
